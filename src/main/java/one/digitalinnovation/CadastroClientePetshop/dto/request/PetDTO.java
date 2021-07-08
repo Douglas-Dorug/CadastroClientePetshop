@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 
 public class PetDTO {
-    private long id;
+    private Long id;
 
     @Enumerated(EnumType.STRING)
     private PetType type;
