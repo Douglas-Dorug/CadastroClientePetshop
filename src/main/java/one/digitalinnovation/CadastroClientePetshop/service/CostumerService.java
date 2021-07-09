@@ -3,6 +3,7 @@ package one.digitalinnovation.CadastroClientePetshop.service;
 import one.digitalinnovation.CadastroClientePetshop.dto.MessageResponseDTO;
 import one.digitalinnovation.CadastroClientePetshop.dto.request.CostumerDTO;
 import one.digitalinnovation.CadastroClientePetshop.entity.Costumer;
+import one.digitalinnovation.CadastroClientePetshop.exception.CostumerNotFoundException;
 import one.digitalinnovation.CadastroClientePetshop.mapper.CostumerMapper;
 import one.digitalinnovation.CadastroClientePetshop.repository.CostumerRepository;
 import org.springframework.stereotype.Service;
@@ -36,4 +37,24 @@ public class CostumerService {
                 .collect(Collectors.toList());
     }
 
+    public CostumerDTO findById(Long id) throws CostumerNotFoundException {
+        Costumer costumer = verifyIfExists(id);
+        return costumerMapper.toDTO(costumer);
+    }
+
+
+
+
+    //Parte do codigo que verifica se um determinado ID existe no banco de dados
+    private Costumer verifyIfExists(Long id) throws CostumerNotFoundException {
+        return costumerRepository.findById(id)
+                .orElseThrow(() -> new CostumerNotFoundException(id));
+    }
+
+    private MessageResponseDTO createMessageResponse(Long id, String message) {
+        return MessageResponseDTO
+                .builder()
+                .message(message + id)
+                .build();
+    }
 }

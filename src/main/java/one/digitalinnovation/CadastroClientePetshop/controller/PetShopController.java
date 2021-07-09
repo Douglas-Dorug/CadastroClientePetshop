@@ -2,6 +2,7 @@ package one.digitalinnovation.CadastroClientePetshop.controller;
 
 import one.digitalinnovation.CadastroClientePetshop.dto.MessageResponseDTO;
 import one.digitalinnovation.CadastroClientePetshop.dto.request.CostumerDTO;
+import one.digitalinnovation.CadastroClientePetshop.exception.CostumerNotFoundException;
 import one.digitalinnovation.CadastroClientePetshop.service.CostumerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,6 +31,11 @@ public class PetShopController {
     public List<CostumerDTO> listAll(){
         return costumerService.listALL();
 
+    }
+
+    @GetMapping("/{id}")
+    public CostumerDTO findById (@PathVariable Long id) throws CostumerNotFoundException {
+        return costumerService.findById(id);
     }
 
 }
