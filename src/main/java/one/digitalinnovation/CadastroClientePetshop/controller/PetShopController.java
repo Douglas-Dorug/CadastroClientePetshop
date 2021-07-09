@@ -32,10 +32,17 @@ public class PetShopController {
         return costumerService.listALL();
 
     }
-
+    //Procura por um cliente pelo seu ID
     @GetMapping("/{id}")
     public CostumerDTO findById (@PathVariable Long id) throws CostumerNotFoundException {
         return costumerService.findById(id);
+    }
+
+    //Deleta um cliente por seu ID
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteById(@PathVariable Long id) throws CostumerNotFoundException {
+        costumerService.delete(id);
     }
 
 }

@@ -57,4 +57,10 @@ public class CostumerService {
                 .message(message + id)
                 .build();
     }
+
+    public void delete(Long id) throws CostumerNotFoundException {
+        verifyIfExists(id);
+
+        costumerRepository.deleteById(id);
+    }
 }
