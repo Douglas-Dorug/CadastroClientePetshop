@@ -7,9 +7,9 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum PetType {
 
-    DOG("Dog"),
-    CAT("Cat"),
-    OTHERS("Others");
+    DOG("Cão"),
+    CAT("Gato"),
+    OTHER("Outro");
 
 
     private final String description;
