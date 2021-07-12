@@ -15,9 +15,14 @@
   - Nome
   - CPF
   - Data de Nascimento
+  - Endereço
+    - Nome da rua com bairro.
+    - Número do endereço.
+    - Referencia de local proximo ou detalhes da casa.
+    - Utilizado a relação `@OneToOne`
   - Telefone
     - Numero com DDD e tipo do aparelho.
-    - Utilizando a relação `@OneToMany`.
+    - Utilizado a relação `@OneToMany`.
   - Pets
     - Nome, raça e tipo.
     - Nesse caso também foi utilizado a relação `@OneToMany`, visto que os clientes também podem ter mais de um pet.
@@ -52,12 +57,17 @@
 {
     "firstName":"Douglas",
     "lastName":"Luiz",
-    "cpf": "999.999.999-99",
+    "cpf": "110.830.034-02",
     "birthDate": "15-01-1997",
+    "address": {
+        "street": "Rua 10 de janeiro",
+        "number": "205 B",
+        "reference": "Casa azul de primeiro andar"
+    },
     "phones": [
         {
             "type":"MOBILE",
-            "number": "(81)99999999"
+            "number": "(81)9999999"
         }
     ],
     "pets": [

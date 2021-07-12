@@ -30,6 +30,7 @@ public class Costumer {
     @Column(nullable = false, unique = true)
     private String cpf;
 
+
     private LocalDate birthDate;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -39,5 +40,9 @@ public class Costumer {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="pet_id", referencedColumnName = "id")
     private List<Pet> pets = new ArrayList<>();
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="address_id", referencedColumnName = "id")
+    private Address address;
 
 }

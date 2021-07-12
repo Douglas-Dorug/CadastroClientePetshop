@@ -41,4 +41,8 @@ public class CostumerDTO {
     @Valid
     @NotEmpty
     private List<PetDTO> pets;
+
+    @Valid
+    @NotEmpty
+    private AddressDTO address;
 }
