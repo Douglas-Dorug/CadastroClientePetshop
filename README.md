@@ -7,7 +7,7 @@
   
 - Visando utilizar o mesmo conceito visto no curso, mas criando alterações, optei por criar um sistema API REST para cadastro de clientes em um petshop.
 
-- Assim, foi criado um **API REST** para _cadastrar_, _alterar_, _recuperar_ e _deletar_ um cliente, com todas as informações que a mesmo possui.
+- Assim, foi criado um **API REST** para _cadastrar_, _alterar_, _recuperar_ e _deletar_ um cliente, com todas as informações que o mesmo possui.
 
 - Iremos criar nossa API utilizando o sistema de banco de dados **H2**.
 
