@@ -57,7 +57,7 @@
 {
     "firstName":"Douglas",
     "lastName":"Luiz",
-    "cpf": "110.830.034-02",
+    "cpf": "999.999.999-99",
     "birthDate": "15-01-1997",
     "address": {
         "street": "Rua 10 de janeiro",
