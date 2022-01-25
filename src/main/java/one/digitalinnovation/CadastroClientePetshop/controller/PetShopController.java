@@ -25,6 +25,7 @@ public class PetShopController {
         return costumerService.createCostumer(costumerDTO);
     }
 
+    @GetMapping("")
     public List<CostumerDTO> listAll(){
         return costumerService.listALL();
 
