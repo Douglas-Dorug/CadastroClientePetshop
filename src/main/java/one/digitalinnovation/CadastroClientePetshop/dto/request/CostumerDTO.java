@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.List;
@@ -20,29 +21,22 @@ public class CostumerDTO {
 
     private Long id;
 
-    @NotEmpty
-    @Size(min = 2,max = 100)
-    private String firstName;
+    private String fullName;
 
-    @NotEmpty
-    @Size(min = 2,max = 100)
-    private String lastName;
-
-    @NotEmpty
-    @CPF
     private String cpf;
+
+    private String email;
+
+    private String rua;
+
+    private String bairro;
+
+    private String numeroCasa;
+
+    private String referencia;
+
+    private String numContato;
 
     private String birthDate;
 
-    @Valid
-    @NotEmpty
-    private List<PhoneDTO> phones;
-
-    @Valid
-    @NotEmpty
-    private List<PetDTO> pets;
-
-    @Valid
-    @NotEmpty
-    private AddressDTO address;
 }

@@ -24,9 +24,11 @@ public class PetDTO {
 
     @NotEmpty
     @Size(min = 2, max = 100)
-    private String name;
+    private String nome;
+
+    private String idade;
 
     @NotEmpty
     @Size(min = 2, max = 100)
-    private String breed;
+    private String raca;
 }

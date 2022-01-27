@@ -4,8 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +17,7 @@ import java.util.List;
 @Entity
 @Data
 @Builder
+@Table(name = "clientes")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Costumer {
@@ -21,28 +26,45 @@ public class Costumer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty
+    @Size(min = 2,max = 100)
     @Column(nullable = false)
-    private String firstName;
+    private String fullName;
 
-    @Column(nullable = false)
-    private String lastName;
-
+    @NotEmpty
+    @CPF
     @Column(nullable = false, unique = true)
     private String cpf;
 
+    @Email
+    @Column(unique = true)
+    private String email;
 
     private LocalDate birthDate;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name="phone_id", referencedColumnName = "id")
-    private List<Phone> phones = new ArrayList<>();
+    @NotEmpty
+    @Size(min = 4, max = 100)
+    @Column
+    private String rua;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name="pet_id", referencedColumnName = "id")
-    private List<Pet> pets = new ArrayList<>();
+    @NotEmpty
+    @Size(min = 4, max = 50)
+    @Column
+    private String bairro;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name="address_id", referencedColumnName = "id")
-    private Address address;
+    @NotEmpty
+    @Size( max = 10)
+    @Column
+    private String numeroCasa;
+
+    @Size(max = 100)
+    @Column
+    private String referencia;
+
+    @NotEmpty
+    @Size(min = 9,max = 11 )
+    @Column
+    private String numContato;
+
 
 }

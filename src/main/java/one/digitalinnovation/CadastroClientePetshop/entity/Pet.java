@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @Builder
+@Table(name = "pets")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Pet {
@@ -24,8 +25,15 @@ public class Pet {
     private PetType type;
 
     @Column(nullable = false)
-    private String name;
+    private String nome;
+
+    @Column
+    private String idade;
 
     @Column(nullable = false)
-    private String breed;
+    private String raca;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_clientes_id", nullable = false)
+    private Costumer costumer;
 }
