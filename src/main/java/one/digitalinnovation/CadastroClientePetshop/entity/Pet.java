@@ -1,17 +1,17 @@
 package one.digitalinnovation.CadastroClientePetshop.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import one.digitalinnovation.CadastroClientePetshop.enums.PetType;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Data
 @Builder
 @Table(name = "pets")
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
 public class Pet {
@@ -24,16 +24,20 @@ public class Pet {
     @Column(nullable = false)
     private PetType type;
 
+    @NotEmpty
+    @Size(min = 2, max = 100)
     @Column(nullable = false)
     private String nome;
 
     @Column
     private String idade;
 
+    @NotEmpty
+    @Size(min = 2, max = 100)
     @Column(nullable = false)
     private String raca;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_clientes_id", nullable = false)
     private Costumer costumer;
 }

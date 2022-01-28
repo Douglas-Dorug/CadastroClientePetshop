@@ -9,6 +9,7 @@ import one.digitalinnovation.CadastroClientePetshop.entity.Pet;
 import one.digitalinnovation.CadastroClientePetshop.exception.CostumerNotFoundException;
 import one.digitalinnovation.CadastroClientePetshop.exception.PetNotFoundException;
 import one.digitalinnovation.CadastroClientePetshop.mapper.PetMapper;
+import one.digitalinnovation.CadastroClientePetshop.repository.CostumerRepository;
 import one.digitalinnovation.CadastroClientePetshop.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,21 +20,38 @@ import javax.validation.Valid;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PetService {
 
+    @Autowired
     private PetRepository petRepository;
+
+    @Autowired
+    private CostumerRepository costumerRepository;
+
+    @Autowired
+    private CostumerService costumerService;
 
     private final PetMapper petMapper = PetMapper.INSTANCE;
 
-    public MessageResponseDTO createPet(one.digitalinnovation.CadastroClientePetshop.dto.request.@Valid PetDTO petDTO){
+    public MessageResponseDTO createPet(one.digitalinnovation.CadastroClientePetshop.dto.request.@Valid PetDTO petDTO) throws CostumerNotFoundException {
         Pet petToSave = petMapper.toModel(petDTO);
+        Costumer costumer = costumerRepository.getById(petDTO.getIdCliente());
+        petToSave.setCostumer(costumer);
         Pet savedPet = petRepository.save(petToSave);
         return createMessageResponse(savedPet.getId(),"Created pet with ID ");
     }
+
 
     public PetDTO findById(Long id) throws PetNotFoundException {
         Pet pet = verifyIfExists(id);
         return petMapper.toDTO(pet);
     }
 
+    public CostumerDTO consultaCostumerId(Long id) throws CostumerNotFoundException {
+        CostumerDTO costumer = costumerService.findById(id);
+        if(costumer == null){
+            throw new CostumerNotFoundException(id);
+        }
+        return costumer;
+    }
 
     private Pet verifyIfExists(Long id) throws  PetNotFoundException{
         return petRepository.findById(id)

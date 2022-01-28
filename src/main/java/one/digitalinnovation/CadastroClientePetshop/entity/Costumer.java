@@ -1,9 +1,6 @@
 package one.digitalinnovation.CadastroClientePetshop.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
@@ -11,13 +8,12 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Data
 @Builder
 @Table(name = "clientes")
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
 public class Costumer {
@@ -65,6 +61,5 @@ public class Costumer {
     @Size(min = 9,max = 11 )
     @Column
     private String numContato;
-
 
 }

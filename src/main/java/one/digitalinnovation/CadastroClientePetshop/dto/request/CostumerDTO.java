@@ -19,8 +19,6 @@ import java.util.List;
 
 public class CostumerDTO {
 
-    private Long id;
-
     private String fullName;
 
     private String cpf;
